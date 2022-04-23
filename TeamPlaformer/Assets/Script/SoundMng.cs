@@ -41,4 +41,16 @@ public class SoundMng : Singleton<SoundMng>
         m_audio[(int)AUDIO_TYPE.BGM].loop = true;
 
     }
+
+    public void PlayBGM(BGM_CLIP bgm)
+    {
+        m_audio[(int)AUDIO_TYPE.BGM].clip = m_bgmClip[(int)bgm];
+        m_audio[(int)AUDIO_TYPE.BGM].Play();
+    }
+
+    public void PlaySFX(SFX_CLIP sfx)
+    {
+        m_audio[(int)AUDIO_TYPE.SFX].PlayOneShot(m_sfxClip[(int)sfx]);
+        m_audio[(int)AUDIO_TYPE.SFX].Play();
+    }
 }
