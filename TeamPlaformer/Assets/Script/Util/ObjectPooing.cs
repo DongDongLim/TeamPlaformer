@@ -46,7 +46,7 @@ public class Example : MonoBehaviour
         for (int i = 0; i < poolingCount; ++i)
         {
             // Instantiate는 매개변수를 다르게 할 수 있어서 원하는 설정 하시면 됩니다
-            // 지금은 소환 오브젝트, 부모 오브젝트, 기준 좌표(이건 신경 안쓰셔도요)로 구성되어 있습니다
+            // 지금은 소환 오브젝트, 부모 오브젝트, 기준 좌표(이건 신경 안쓰셔도 되요)로 구성되어 있습니다
             pooling.Push(Instantiate(Obj, this.transform, false));
         }
     }
