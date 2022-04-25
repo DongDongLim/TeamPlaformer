@@ -2,19 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class StringInt : SerializableDictionary<string, int> { }
 
 [CreateAssetMenu(fileName = "QuestData", menuName = "Data/QuestData")]
 public class QuestData : Data
 {
-    [System.Serializable]
-   public enum QuestType
-    {
-        Collect,
-        KillCnt,
-        Delivery,
-    }
-    [SerializeField]
-    public QuestType type;
+    public string title;
 
-    public Dictionary<string, int> Condition = new Dictionary<string, int>();
+    [TextArea]
+    public string description;
+
+    public StringInt Condition;
 }

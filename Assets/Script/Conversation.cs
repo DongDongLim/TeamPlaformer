@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Conversation
+public class Conversation : MonoBehaviour
 {
     [Header("대화")]
     public string Command;
 
-    public void Say()
+    public void ReAction()
     {
-        GameObject obj = UIMng.instance.uiList["대화"];
-        
-        obj.SetActive(true);
+        //GameObject obj = UIMng.instance.uiList["대화"];
+        Debug.Log(Command);
+        //obj.SetActive(true);
     }
 
 

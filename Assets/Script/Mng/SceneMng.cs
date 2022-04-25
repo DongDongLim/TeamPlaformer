@@ -71,4 +71,13 @@ public class SceneMng : Singleton<SceneMng>
         StopCoroutine(iter);
     }
 
+
+
+    private void Update()
+    {
+        if(Input.GetButtonDown("Jump"))
+        {
+            SceneMove("Stage1");
+        }
+    }
 }

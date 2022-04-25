@@ -9,7 +9,6 @@ public abstract class Data : ScriptableObject
 
     public Sprite icon = null;
 
-    public GameObject prefab = null;
 
 
 }
