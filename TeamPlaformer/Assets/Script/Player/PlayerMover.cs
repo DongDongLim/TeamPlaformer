@@ -27,6 +27,7 @@ public class PlayerMover : MonoBehaviour
     public float jumpForce = 3f;
     float horizon;
 
+    float hSpeed;
     float vSpeed;
     bool _isJump;
     bool isGround
@@ -49,6 +50,16 @@ public class PlayerMover : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        Vector2 startvec = new Vector2(collider.transform.position.x, collider.transform.position.y);
+        RaycastHit2D hit = Physics2D.Raycast(startvec, Vector2.down, 1.5f, LayerMask.GetMask("Ground"));
+        if (null != hit.collider)
+        {
+            isGround = true;
+        }
+        else
+        {
+            isGround = false;
+        }
         Move();
         Jump();
     }
@@ -65,22 +76,13 @@ public class PlayerMover : MonoBehaviour
     }
     private void Move()
     {
-        horizon = Input.GetAxis("Horizontal") * moveSpeed;
-        transform.Translate(Vector2.right * horizon * Time.deltaTime);
-        anim.SetBool("IsMove", true);
-        if (horizon > 0)
-        {
-            transform.localScale = new Vector2(1, 1);
-        }
-        else if (horizon < 0)
-        {
-
+        hSpeed = Input.GetAxis("Horizontal") * moveSpeed;
+        anim.SetFloat("hSpeed", Mathf.Abs(hSpeed));
+        transform.Translate(Vector2.right * hSpeed * Time.fixedDeltaTime);
+        if (hSpeed < 0)
             transform.localScale = new Vector2(-1, 1);
-        }
-        else
-        {
-            anim.SetBool("IsMove", false);
-        }
+        else if (hSpeed > 0)
+            transform.localScale = new Vector2(1, 1);
     }
     private void Jump()
     {
