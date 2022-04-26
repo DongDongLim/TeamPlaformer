@@ -18,7 +18,7 @@ public class PlayerMover : MonoBehaviour
 {
 
     Rigidbody2D rigid;
-    Collider2D collider;
+    Collider2D playercollider;
     Animator anim;
 
     INFO info;
@@ -45,12 +45,12 @@ public class PlayerMover : MonoBehaviour
     private void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
-        collider = GetComponent<Collider2D>();
+        playercollider = GetComponent<Collider2D>();
         anim = GetComponent<Animator>();
     }
     private void FixedUpdate()
     {
-        Vector2 startvec = new Vector2(collider.transform.position.x, collider.transform.position.y);
+        Vector2 startvec = new Vector2(playercollider.transform.position.x, playercollider.transform.position.y);
         RaycastHit2D hit = Physics2D.Raycast(startvec, Vector2.down, 1.5f, LayerMask.GetMask("Ground"));
         if (null != hit.collider)
         {

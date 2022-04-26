@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IDamaged
+public abstract class State : MonoBehaviour
 {
-    void Damaged(SkillData data);
+
+    public abstract void Action();
+
 }

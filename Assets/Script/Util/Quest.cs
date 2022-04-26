@@ -28,7 +28,6 @@ public abstract class Quest : MonoBehaviour
 
     protected virtual void Awake()
     {
-        DataMng.instance.Add(quest);
         Owner = GetComponentInParent<Npc>();
         Owner.npcReAction += Accept;
         Owner.npcReAction -= Owner.basic;
