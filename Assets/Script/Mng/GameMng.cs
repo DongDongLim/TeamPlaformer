@@ -72,4 +72,8 @@ public class GameMng : Singleton<GameMng>
         for (int i = 0; i < cnt; ++i)
             RemoveObj(popList[0]);
     }
+    void DamageAllObj()
+    {
+        //TODO:MonsterScript 완성시 광역데미지 추가
+    }
 }
