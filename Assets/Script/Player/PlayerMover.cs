@@ -25,6 +25,7 @@ public class PlayerMover : MonoBehaviour
 
     public float moveSpeed = 5f;
     public float jumpForce = 3f;
+    public float dashForce = 8f;
     float horizon;
 
     float hSpeed;
@@ -61,10 +62,11 @@ public class PlayerMover : MonoBehaviour
             isGround = false;
         }
         Move();
-        Jump();
     }
     private void Update()
     {
+        Jump();
+        Dash();
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -89,10 +91,24 @@ public class PlayerMover : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGround == true)
         {
             rigid.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-
-            // anim.SetBool("IsJump", isJump);
         }
         vSpeed = rigid.velocity.y;
         anim.SetFloat("vSpeed", vSpeed);
+    }
+    private void Dash()
+    {
+        hSpeed = Input.GetAxisRaw("Horizontal") * moveSpeed;
+        if (Input.GetButtonDown("Dash") /*&& 대쉬 조건문 추가*/)
+        {
+            anim.SetTrigger("IsDash");
+            if(hSpeed < 0)
+            {
+                rigid.AddForce(Vector2.left * dashForce,ForceMode2D.Impulse);
+            }
+            else if(hSpeed > 0)
+            {
+                rigid.AddForce(Vector2.right * dashForce,ForceMode2D.Impulse);
+            }
+        }
     }
 }
