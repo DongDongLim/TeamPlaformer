@@ -18,7 +18,7 @@ public class PlayerMover : MonoBehaviour
 {
 
     Rigidbody2D rigid;
-    Collider2D collider;
+    Collider2D playerCollider;
     Animator anim;
 
     INFO info;
@@ -27,16 +27,21 @@ public class PlayerMover : MonoBehaviour
     public float jumpForce = 3f;
     public float dashForce = 8f;
     float horizon;
-
+    
     float hSpeed;
     float vSpeed;
+
+    float dashDelay = 0;
+    bool isDash;
+
     bool _isJump;
     bool isGround
     {
         set
         {
             _isJump = value;
-            anim.SetBool("IsJump", value);
+            if(!isDash)
+                anim.SetBool("IsJump", value);
         }
         get
         {
@@ -46,12 +51,12 @@ public class PlayerMover : MonoBehaviour
     private void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
-        collider = GetComponent<Collider2D>();
+        playerCollider = GetComponent<Collider2D>();
         anim = GetComponent<Animator>();
     }
     private void FixedUpdate()
     {
-        Vector2 startvec = new Vector2(collider.transform.position.x, collider.transform.position.y);
+        Vector2 startvec = new Vector2(playerCollider.transform.position.x, playerCollider.transform.position.y);
         RaycastHit2D hit = Physics2D.Raycast(startvec, Vector2.down, 1.5f, LayerMask.GetMask("Ground"));
         if (null != hit.collider)
         {
@@ -61,12 +66,24 @@ public class PlayerMover : MonoBehaviour
         {
             isGround = false;
         }
+        //대시 딜레이
+        if (isDash)
+        {
+            dashDelay += Time.deltaTime;
+            if (dashDelay >= 1.2f)
+            {
+                dashDelay = 0;
+                isDash = false;
+            }
+        }
         Move();
     }
+    
     private void Update()
     {
         Jump();
         Dash();
+      
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -97,9 +114,10 @@ public class PlayerMover : MonoBehaviour
     }
     private void Dash()
     {
-        hSpeed = Input.GetAxisRaw("Horizontal") * moveSpeed;
-        if (Input.GetButtonDown("Dash") /*&& 대쉬 조건문 추가*/)
+        hSpeed = Input.GetAxis("Horizontal") * moveSpeed;
+        if (Input.GetButtonDown("Dash") && dashDelay <= 0 && anim.GetFloat("hSpeed") >= 1 && isGround)
         {
+            isDash = true;
             anim.SetTrigger("IsDash");
             if(hSpeed < 0)
             {
