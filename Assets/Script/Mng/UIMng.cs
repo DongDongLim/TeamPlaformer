@@ -14,4 +14,15 @@ public class UIMng : Singleton<UIMng>
         uiList.Add("대화", uiDialog[0]);
         uiList.Add("대화1", uiDialog[0]);
     }
+
+    private void Start()
+    {
+
+        SceneMng.instance.SceneEnter += SceneUI;
+    }
+
+    public void SceneUI(string str)
+    {
+        uiDialog[0].SetActive(false);
+    }
 }

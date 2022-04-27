@@ -10,16 +10,26 @@ public class Monster : MonoBehaviour, IDamaged
     [SerializeField]
     ItemData[] dropItem;
 
-    [SerializeField]
-    SkillData atk;
+    
+    public SkillData atk;
 
     [SerializeField]
     float Hp;
 
-    [SerializeField]
+
     public int Speed;
 
+    // 공격 범위
     public int AtkRange;
+
+
+    // 기본 이동 거리
+    public int MoveRange;
+
+    // 기준 위치
+    public Vector2 StdVector;
+
+
 
     [SerializeField]
     State curState;
@@ -43,6 +53,7 @@ public class Monster : MonoBehaviour, IDamaged
     {
         curState?.Exit();
         curState = newState;
+        curState?.Enter();
     }
 
     public void Damaged(SkillData data)
@@ -56,7 +67,7 @@ public class Monster : MonoBehaviour, IDamaged
     private void Update()
     {
         PattenCheck();
-        curState.Stay();
+        curState?.Stay();
     }
 
     void PattenCheck()
@@ -70,10 +81,7 @@ public class Monster : MonoBehaviour, IDamaged
                     Trade(st);
                     return;
                 }
-            }
-            else
-            {
-                if (st == curState)
+                else
                     return;
             }
         }

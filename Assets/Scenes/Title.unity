@@ -577,16 +577,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shopItemData:
-  - {fileID: 11400000, guid: 34ed5a3a0e5082a47ae033adc88628b1, type: 2}
-  - {fileID: 11400000, guid: 8c385ab367a61ef4da1da7de97f4dd92, type: 2}
-  - {fileID: 11400000, guid: 3dc4c7c65063f4e48bf3b5f06e46d6c1, type: 2}
-  - {fileID: 11400000, guid: e4779395fc0e2234ab18478fb7633096, type: 2}
-  - {fileID: 11400000, guid: 851a067735458e8478a448718478ced1, type: 2}
-  - {fileID: 11400000, guid: 240de5bb9eb70dc40a9aceab8c395bca, type: 2}
-  - {fileID: 11400000, guid: 7dd093460c2019644a7c9a0c7b769b12, type: 2}
-  - {fileID: 11400000, guid: 0ef805c7b5834724f884068dcc2e6591, type: 2}
-  - {fileID: 11400000, guid: 05b082f89af3f0e4581df27894a1ff57, type: 2}
-  - {fileID: 11400000, guid: 22739e5de288af54f8adb5e9130fbd00, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   shopSkillData:
   - {fileID: 11400000, guid: 4c1613075ed08b44a8006c13107f745f, type: 2}
   - {fileID: 11400000, guid: 0a4db358a4e813b409d4c8b224075058, type: 2}
