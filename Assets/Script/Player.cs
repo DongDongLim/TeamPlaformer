@@ -2,13 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
-{
-    public Dictionary<string, int> PlayerData = new Dictionary<string, int>();
 
+public class Player : MonoBehaviour , IDamaged
+{
+    public int Hp = 3;
+
+    SceneMng mng;
+
+    public Dictionary<string, int> PlayerData = new Dictionary<string, int>();
+    
     public void Awake()
     {
         PlayerData.Add("레벨", 2);
+    }
+
+    public void Damaged(SkillData data)
+    {
+        Hp -= data.atk;
+        if(Hp <= 0)
+        {
+            //Die();
+        }
+    }
+
+    private void Die()
+    {
+        //mng.SceneExit();
     }
 
     private void Update()
@@ -36,5 +55,6 @@ public class Player : MonoBehaviour
         {
             PlayerData["레벨"] = 10;
         }
+        
     }
 }

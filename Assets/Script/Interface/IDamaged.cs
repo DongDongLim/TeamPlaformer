@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IDamaged
 {
-    void Damaged(Data data);
+    void Damaged(SkillData data);
 }
