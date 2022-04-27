@@ -9,6 +9,11 @@ public class Portal : MonoBehaviour
     private void Awake()
     {
         Owner = GetComponentInParent<Npc>();
+        Owner.npcReAction += SceneMove;
+    }
 
+    public void SceneMove()
+    {
+        SceneMng.instance.SceneMove("Stage2");
     }
 }
