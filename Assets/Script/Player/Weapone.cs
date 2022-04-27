@@ -43,11 +43,12 @@ public class Weapone : MonoBehaviour
             anime.SetBool("IsAttacked", true);
         }
     }
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.tag == "Monster")
+        if (other.gameObject.layer == 11/*몬스터*/)
         {
-            //monster의 hp가 달게
+            //TODO : monster의 hp가 달게
+            Destroy(other.gameObject);
         }
     }
 }
