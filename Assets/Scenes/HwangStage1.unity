@@ -291,6 +291,7 @@ MonoBehaviour:
   preFad: {fileID: 2901354755136600910, guid: 73a08db13e973fc40a6574fb386372d8, type: 3}
   hitParticle: {fileID: 2901354755121029678, guid: 73a08db13e973fc40a6574fb386372d8,
     type: 3}
+  hitDistance: 3
 --- !u!61 &1077136232
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -566,6 +567,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MonD_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5440768771941995877, guid: 2babb021a4459cf419bbca54620fb0c5,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2babb021a4459cf419bbca54620fb0c5, type: 3}

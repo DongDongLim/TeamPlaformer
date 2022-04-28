@@ -14,6 +14,7 @@ public class Weapone : MonoBehaviour
 
     float attackDelay = 0;
     bool isAttacked;
+    public float hitDistance = 3f;
 
     private void Start()
     {
@@ -52,13 +53,15 @@ public class Weapone : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Monster")/*몬스터*/)
         {
-            Debug.Log("몬스터 때림");
+            Debug.Log("attcked!!!");
             GameObject obj = Instantiate(preFad,transform.position,Quaternion.identity);
             obj.GetComponent<ParticleSystem>().Play();
-
             IDamaged target = GetComponent<IDamaged>();
+
+
+            other.rigidbody.AddForce(new Vector2(transform.position.x * hitDistance * Time.deltaTime, transform.position.y),ForceMode2D.Impulse);
             //target.Damaged();
-            
+
             //TODO : monster의 hp가 달게
         }
 
