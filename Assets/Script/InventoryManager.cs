@@ -17,7 +17,8 @@ public class InventoryManager : MonoBehaviour
     public InventoryUI ui;//인벤토리ui
 
     public List<ItemData> items = new List<ItemData>();
-    public int maxSize = 15;//인벤토리 맥스사이즈 15 3x5로 구현예정 <- 
+    public List<ItemData> Skills = new List<ItemData>();
+    public int maxSize = 12;//인벤토리 맥스사이즈 12 3x4로 구현예정 <- 
 
     private void Awake()
     {

@@ -47,10 +47,16 @@ public class Monster : MonoBehaviour, IDamaged
 
     public void Damaged(SkillData data)
     {
-        
-        Hp -= data.atk;
-        if (Hp <= 0)
-            Die();
+        switch(data.Use())
+        {
+            case SkillData.SkillType.NOMMAL:
+                Hp -= data.m_skillInfo.atk;
+                if (Hp <= 0)
+                    Die();
+                break;
+            case SkillData.SkillType.STUN:
+                break;
+        }
     }
 
     private void Update()

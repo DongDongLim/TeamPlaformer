@@ -25,23 +25,17 @@ public class PlayerMover : MonoBehaviour
 
     public float moveSpeed = 5f;
     public float jumpForce = 3f;
-    public float dashForce = 8f;
     float horizon;
-    
+
     float hSpeed;
     float vSpeed;
-
-    float dashDelay = 0;
-    bool isDash;
-
     bool _isJump;
     bool isGround
     {
         set
         {
             _isJump = value;
-            if(!isDash)
-                anim.SetBool("IsJump", value);
+            anim.SetBool("IsJump", value);
         }
         get
         {
@@ -66,24 +60,11 @@ public class PlayerMover : MonoBehaviour
         {
             isGround = false;
         }
-        //대시 딜레이
-        if (isDash)
-        {
-            dashDelay += Time.deltaTime;
-            if (dashDelay >= 1.2f)
-            {
-                dashDelay = 0;
-                isDash = false;
-            }
-        }
         Move();
+        Jump();
     }
-    
     private void Update()
     {
-        Jump();
-        Dash();
-      
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -108,25 +89,10 @@ public class PlayerMover : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGround == true)
         {
             rigid.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+
+            // anim.SetBool("IsJump", isJump);
         }
         vSpeed = rigid.velocity.y;
         anim.SetFloat("vSpeed", vSpeed);
-    }
-    private void Dash()
-    {
-        hSpeed = Input.GetAxis("Horizontal") * moveSpeed;
-        if (Input.GetButtonDown("Dash") && dashDelay <= 0 && anim.GetFloat("hSpeed") >= 1 && isGround)
-        {
-            isDash = true;
-            anim.SetTrigger("IsDash");
-            if(hSpeed < 0)
-            {
-                rigid.AddForce(Vector2.left * dashForce,ForceMode2D.Impulse);
-            }
-            else if(hSpeed > 0)
-            {
-                rigid.AddForce(Vector2.right * dashForce,ForceMode2D.Impulse);
-            }
-        }
     }
 }

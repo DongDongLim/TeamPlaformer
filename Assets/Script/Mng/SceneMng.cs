@@ -75,9 +75,10 @@ public class SceneMng : Singleton<SceneMng>
 
     private void Update()
     {
+        if(curScnen.name != "Stage2")
         if(Input.GetButtonDown("Jump"))
         {
-            SceneMove("Stage1");
+            SceneMove("Stage2");
         }
     }
 }
