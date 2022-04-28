@@ -9,6 +9,6 @@ public abstract class Data : ScriptableObject
 
     public Sprite icon = null;
 
-
+    public float CoolTime = 0.5f;
 
 }

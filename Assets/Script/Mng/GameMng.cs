@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class GameMng : Singleton<GameMng>
 {
+
+    public Dictionary<string, int> PlayerData = new Dictionary<string, int>();
+
+
+
     [SerializeField]
      GameObject MonPrefab1;
 
@@ -11,10 +16,20 @@ public class GameMng : Singleton<GameMng>
 
     ObjectPooing pooling = new ObjectPooing();
 
+    public float playerHp;
+
+    public int Gold;
+
+    public Vector2 dropPos;
+
+    public float MaxHp = 3;
+    
+
     int poolingCount = 10;
 
     protected override void OnAwake()
     {
+        playerHp = MaxHp;
         pooling.OnRePooing += PooingObj;
         SceneMng.instance.SceneEnter += SummonMon;
         SceneMng.instance.SceneExit += DeleteMon;
@@ -62,6 +77,7 @@ public class GameMng : Singleton<GameMng>
 
     public void RemoveObj(GameObject obj)
     {
+        dropPos = obj.transform.position;
         pooling.Push(obj);
         popList.Remove(obj);
     }
@@ -76,4 +92,14 @@ public class GameMng : Singleton<GameMng>
     {
         //TODO:MonsterScript 완성시 광역데미지 추가
     }
+    public void PlayerAttack(SkillItemData Effect)
+    {
+        //TODO:플레이어 쪽에서 들어온 스킬 이펙트에 대한 처리
+    }
+
+    public void DropItem(GameObject item)
+    {
+        item.transform.position = dropPos;
+    }
+
 }
