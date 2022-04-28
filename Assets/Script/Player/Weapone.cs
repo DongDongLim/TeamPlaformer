@@ -7,10 +7,8 @@ public class Weapone : MonoBehaviour
     //public SkillData skill;
     BoxCollider2D boxCollider;
     Animator anime;
-  
 
     public GameObject preFad;
-    public ParticleSystem hitParticle;
 
     float attackDelay = 0;
     bool isAttacked;
@@ -49,21 +47,21 @@ public class Weapone : MonoBehaviour
             anime.SetBool("IsAttacked", true);
         }
     }
-    private void OnCollisionEnter2D(Collision2D other)
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Monster")/*몬스터*/)
         {
             Debug.Log("attcked!!!");
-            GameObject obj = Instantiate(preFad,transform.position,Quaternion.identity);
+            GameObject obj = Instantiate(preFad, transform.position, Quaternion.identity);
+
             obj.GetComponent<ParticleSystem>().Play();
+
             IDamaged target = GetComponent<IDamaged>();
-
-
-            other.rigidbody.AddForce(new Vector2(transform.position.x * hitDistance * Time.deltaTime, transform.position.y),ForceMode2D.Impulse);
             //target.Damaged();
 
             //TODO : monster의 hp가 달게
         }
-
     }
+
 }
