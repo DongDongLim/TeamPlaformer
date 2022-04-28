@@ -75,12 +75,9 @@ public class SceneMng : Singleton<SceneMng>
 
     private void Update()
     {
-        if (Input.GetButtonDown("Jump"))
+        if(Input.GetButtonDown("Jump"))
         {
-            if (SceneMng.instance.curScnen.name == "Title")
-                SceneMng.instance.SceneMove("Stage1");
-            else
-                SceneMng.instance.SceneMove("Title");
+            SceneMove("Stage1");
         }
     }
 }
