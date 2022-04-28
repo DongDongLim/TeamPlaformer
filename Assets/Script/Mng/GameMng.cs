@@ -26,11 +26,10 @@ public class GameMng : Singleton<GameMng>
     {
         if(name == "Stage2")
         {
-            CreateObj();
-            //for (int i = 0; i < 10; ++i)
-            //{
-            //    CreateObj();
-            //}
+            for (int i = 0; i < 10; ++i)
+            {
+                CreateObj();
+            }
         }
     }
 
@@ -58,8 +57,6 @@ public class GameMng : Singleton<GameMng>
     public void CreateObj()
     {
         GameObject obj = pooling.Pop(transform.position);
-        obj.transform.localPosition = new Vector3(0, -3.2f, 0);
-        obj.SetActive(true);
         popList.Add(obj);
     }
 
