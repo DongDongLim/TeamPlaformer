@@ -41,6 +41,7 @@ public class Player : MonoBehaviour , IDamaged
         {
             //Die();
         }
+
     }
 
     private void Die()
@@ -70,7 +71,7 @@ public class Player : MonoBehaviour , IDamaged
                 }
             }
         }
-        if(Input.GetKeyDown(KeyCode.Z))
+        if(Input.GetKeyDown(KeyCode.A))
         {
             if (QuestMng.instance.curQuest.Count != 0)
                 QuestMng.instance.curQuest[0].Progress();

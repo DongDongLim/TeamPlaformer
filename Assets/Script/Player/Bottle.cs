@@ -38,33 +38,35 @@ public class Bottle : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Ground") ^ other.gameObject.layer == LayerMask.NameToLayer("Monster"))
         {
             Magic();
-            Destroy(gameObject, 1f);
+            Destroy(gameObject);
         }
     }
-    GameObject objp;
-    private void OnDestroy()
-    {
-        Destroy(objp);
-    }
+    
+   
     private void Magic()
     {
-        objp = Instantiate(preFab, transform.position, Quaternion.identity);
+        GameObject objp = Instantiate(preFab, transform.position, Quaternion.identity);
         objp.GetComponent<ParticleSystem>().Play();
         RaycastHit2D hit = Physics2D.Raycast(objp.transform.position, new Vector2(hSpeed, 0), 5f, LayerMask.GetMask("Monster"));
-        if(null != hit.collider)
+        Debug.DrawRay(objp.transform.position, Vector2.up * 10f, new Color(0, 0, 1));
+        if (null != hit.collider)
         {
             Debug.Log("작동");
             IDamaged target = hit.collider.GetComponent<IDamaged>();
             //target.damaged;
+
+            Destroy(objp, 0.5f);
         }
         else
         {
             Debug.Log("비작동");
+            Destroy(objp, 0.5f);
             return;
         }
         
-        Debug.DrawRay(objp.transform.position, Vector2.up * 10f, new Color(0, 0, 1));
+        
        
+
     }
     
 }
