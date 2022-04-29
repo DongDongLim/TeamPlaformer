@@ -14,7 +14,7 @@ public class SkillData : Data
         public bool isStun;//스턴유무
     }
     [SerializeField]
-    public skillInfo m_skillInfo;
+    public skillInfo m_skillInfo;//public으로 바꾸고   몬스터쪽에 지정해줌.
 
     [System.Serializable]
     public enum SkillType

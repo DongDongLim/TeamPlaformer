@@ -38,7 +38,7 @@ public class InventoryManager : MonoBehaviour
     {
         if (items.Count >= maxSize)//아이템 수>=최대소지개수
             return false;//빠꾸
-
+        //Debug.Log("")//
         else
         {
             items.Add(item);//위에서 걸러지지 않았다면 아래 실행함.

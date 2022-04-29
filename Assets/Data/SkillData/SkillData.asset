@@ -12,12 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 428c81226f658e540b48818f3467b861, type: 3}
   m_Name: SkillData
   m_EditorClassIdentifier: 
-  name: MonNomal
+  name: New Item
   icon: {fileID: 0}
-  CoolTime: 0.5
-  m_skillInfo:
-    atk: 1
-    sec: 0
-    range: 0
-    isStun: 0
-  skillType: 0
+  prefab: {fileID: 0}
+  atk: 0

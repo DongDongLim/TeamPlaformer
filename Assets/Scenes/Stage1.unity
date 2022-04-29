@@ -176,8 +176,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd891d617224b4ba8b47de1c9a42f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hp: 3
-  preFab: {fileID: 6054690662435303817, guid: 19167fbb5c6ea374891b3f12ad027057, type: 3}
 --- !u!1 &462558038
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,7 +306,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb7b38c7f28fe044492c31d90fcffd1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  preFad: {fileID: 2901354755136600910, guid: 73a08db13e973fc40a6574fb386372d8, type: 3}
+  hitUI: {fileID: 0}
+  potion: {fileID: 0}
   hitDistance: 3
 --- !u!61 &1077136232
 BoxCollider2D:
