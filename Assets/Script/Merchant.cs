@@ -12,14 +12,19 @@ public class Merchant : MonoBehaviour
         Owner = GetComponentInParent<Npc>();
 
         ShopMng.instance.ShopSetting(itemDatas);
-
+        AddItem();
         Owner.npcReAction += DataRead;
+    }
+
+    public void AddItem()
+    {
+        foreach (ItemData data in itemDatas)
+            InventoryManager.instance.Add(data, 0);
     }
 
     public void DataRead()
     {
-        foreach (ItemData data in itemDatas)
-            Debug.Log(data.name);
-
+        InventoryManager.instance.InventoryActive(0);
+        InventoryManager.instance.InventoryActive(1);
     }
 }

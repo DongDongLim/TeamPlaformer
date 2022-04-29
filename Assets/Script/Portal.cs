@@ -6,14 +6,18 @@ public class Portal : MonoBehaviour
 {
     Npc Owner;
 
+    GameObject obj;
+
     private void Awake()
     {
         Owner = GetComponentInParent<Npc>();
+        obj = UIMng.instance.uiList["이동"];
         Owner.npcReAction += SceneMove;
     }
 
     public void SceneMove()
     {
-        SceneMng.instance.SceneMove("Stage2");
+        obj.SetActive(true);
     }
+
 }

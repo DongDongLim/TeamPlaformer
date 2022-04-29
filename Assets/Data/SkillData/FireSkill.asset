@@ -16,7 +16,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: ddf8838d0a06d8d4c9dec9e3bed69260, type: 3}
   CoolTime: 0.5
   m_skillInfo:
-    atk: 0
+    atk: 1
     sec: 0
     range: 0
     isStun: 0

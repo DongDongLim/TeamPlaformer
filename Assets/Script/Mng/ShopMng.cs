@@ -6,8 +6,6 @@ public class ShopMng : Singleton<ShopMng>
 {
     [SerializeField]
     ItemData[] shopItemData;
-    [SerializeField]
-    SkillData[] shopSkillData;
 
     [SerializeField]
     int shopMax;
@@ -16,8 +14,6 @@ public class ShopMng : Singleton<ShopMng>
     int shopMin;
 
     List<ItemData> listItem = new List<ItemData>();
-
-    List<SkillData> listSkill = new List<SkillData>();
 
     protected override void OnAwake()
     {
@@ -71,56 +67,6 @@ public class ShopMng : Singleton<ShopMng>
             ShopSetting(item);
         }
     }
-
-
-    public void ShopSetting(List<SkillData> item)
-    {
-        if (listSkill.Count == 0)
-        {
-            for (int i = 0; i < shopSkillData.Length; ++i)
-            {
-                if (Random.Range(0, 2) == 0)
-                {
-                    item.Add(shopSkillData[i]);
-                }
-                else
-                {
-                    listSkill.Add(shopSkillData[i]);
-                }
-                if (item.Count >= shopMax)
-                {
-                    listSkill.RemoveAll(x => true);
-                    return;
-                }
-            }
-        }
-        else
-        {
-            List<SkillData> mini = new List<SkillData>();
-            for (int i = 0; i < listSkill.Count; ++i)
-            {
-                if (Random.Range(0, 2) == 0)
-                {
-                    mini.Add(listSkill[i]);
-                    item.Add(listSkill[i]);
-                }
-                if (item.Count >= shopMax)
-                {
-                    listSkill.RemoveAll(x => true);
-                    return;
-                }
-            }
-            foreach (SkillData data in mini)
-            {
-                listSkill.Remove(data);
-            }
-        }
-        if (item.Count < shopMin)
-        {
-            ShopSetting(item);
-        }
-    }
-
 
 
 }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4360671056070987552}
   - component: {fileID: 3137476077684458048}
   - component: {fileID: 39366067100814660}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4730,7 +4730,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 13
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -4769,7 +4769,7 @@ GameObject:
   - component: {fileID: 594310401946421178}
   - component: {fileID: 6221238205022049316}
   - component: {fileID: 5802594834928199338}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Monster1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4829,7 +4829,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 11
   m_Sprite: {fileID: -7482177786666212508, guid: 65ff7901cede6de4780d96486d09e5ee,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4877,11 +4877,11 @@ MonoBehaviour:
   - {fileID: 6221238205022049316}
   - {fileID: 594310401946421178}
   dropItem: []
-  atk: {fileID: 11400000, guid: 4c1613075ed08b44a8006c13107f745f, type: 2}
+  atk: {fileID: 11400000, guid: 696493f66b4c3414eb073943d712f541, type: 2}
   Hp: 10
-  Speed: 2
-  AtkRange: 3
-  MoveRange: 0
+  Speed: 5
+  AtkRange: 1.5
+  MoveRange: 1
   curState: {fileID: 0}
   StdVector: {x: 0, y: 0}
   target: {fileID: 0}
@@ -4947,7 +4947,7 @@ GameObject:
   - component: {fileID: 6255487095522125991}
   - component: {fileID: 6410171429915423330}
   - component: {fileID: 6679688816717085047}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9665,7 +9665,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 12
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0

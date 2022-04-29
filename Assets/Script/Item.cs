@@ -21,7 +21,7 @@ public class Item : MonoBehaviour
             if(null != data as DropData)
             {
                 if ((data as DropData).droptype == DropData.DropType.QUEST)
-                    InventoryManager.instance.Add(data);
+                    InventoryManager.instance.Add(data, 1);
                 else
                     GameMng.instance.Gold += 10;
                 Destroy(gameObject);

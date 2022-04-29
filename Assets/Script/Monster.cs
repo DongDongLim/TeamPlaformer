@@ -19,9 +19,9 @@ public class Monster : MonoBehaviour, IDamaged
     [SerializeField]
     public int Speed;
 
-    public int AtkRange;
+    public float AtkRange;
 
-    public int MoveRange;
+    public float MoveRange;
 
     [SerializeField]
     State curState;
@@ -33,6 +33,8 @@ public class Monster : MonoBehaviour, IDamaged
     public GameObject target = null;
 
     public Animator anim;
+
+    RaycastHit2D hit;
 
     private void Awake()
     {
@@ -69,6 +71,7 @@ public class Monster : MonoBehaviour, IDamaged
     {
         PattenCheck();
         curState?.Stay();
+        
     }
 
     void PattenCheck()
@@ -80,11 +83,9 @@ public class Monster : MonoBehaviour, IDamaged
                 if (st != curState)
                 {
                     Trade(st);
-                    return;
                 }
-            }
-            else
                 return;
+            }
         }
     }
 

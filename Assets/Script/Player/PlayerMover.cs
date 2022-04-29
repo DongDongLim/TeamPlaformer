@@ -35,6 +35,9 @@ public class PlayerMover : MonoBehaviour
     bool isDash;
 
     bool _isJump;
+
+    GameObject isNpc = null;
+
     bool isGround
     {
         set
@@ -87,12 +90,27 @@ public class PlayerMover : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
-
+        if (other.gameObject.layer == LayerMask.NameToLayer("NPC"))
+        {
+            isNpc = other.gameObject;
+        }
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-
+        if (other.gameObject.layer == LayerMask.NameToLayer("NPC"))
+        {
+            isNpc = other.gameObject;
+        }
     }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("NPC"))
+        {
+            isNpc = null;
+        }
+    }
+
     private void Move()
     {
         hSpeed = Input.GetAxis("Horizontal") * moveSpeed;
@@ -105,13 +123,24 @@ public class PlayerMover : MonoBehaviour
     }
     private void Jump()
     {
-        if (Input.GetButtonDown("Jump") && isGround == true)
+        if (null != isNpc)
         {
-            rigid.velocity = new Vector2(rigid.velocity.x, 0);
-            rigid.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            if (Input.GetButtonDown("Jump") && isGround == true)
+            {
+                IInteraction inter = isNpc.GetComponent<IInteraction>();
+                inter?.ReAction();
+            }
         }
-        vSpeed = rigid.velocity.y;
-        anim.SetFloat("vSpeed", vSpeed);
+        else
+        {
+            if (Input.GetButtonDown("Jump") && isGround == true)
+            {
+                rigid.velocity = new Vector2(rigid.velocity.x, 0);
+                rigid.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            }
+            vSpeed = rigid.velocity.y;
+            anim.SetFloat("vSpeed", vSpeed);
+        }
     }
     private void Dash()
     {

@@ -60,25 +60,47 @@ public class SceneMng : Singleton<SceneMng>
 
     IEnumerator LoadYourAsyncScene(string sceneName)
     {
+        UIMng.instance.FaidOut();
+        while (true)
+        {
+            if (UIMng.instance.isFaidOut)
+            {
+                break;
+            }
+            yield return null;
+        }
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
         SceneExit?.Invoke(curScnen.name);
         while (!asyncLoad.isDone)
         {
             yield return null;
         }
+
         curScnen = SceneManager.GetActiveScene();
         SceneEnter?.Invoke(sceneName);
+
+        UIMng.instance.FaidIn();
+        while (true)
+        {
+            if (UIMng.instance.isFaidIn)
+            {
+                break;
+            }
+            yield return null;
+        }
+        UIMng.instance.uiList["페이드인"].SetActive(false);
         StopCoroutine(iter);
     }
 
-
+    public void GameStart()
+    {
+        SceneMove("Stage1");
+    }
 
     private void Update()
     {
-        if(curScnen.name != "Stage2")
-        if(Input.GetButtonDown("Jump"))
-        {
-            SceneMove("Stage2");
-        }
+        if(curScnen.name == "Title")
+            if(Input.anyKeyDown)
+                GameStart();
     }
 }

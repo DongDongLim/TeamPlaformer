@@ -7,6 +7,7 @@ public class TrackingState : State
     int dir;
     bool isCondition;
     GameObject target;
+    Vector2 targetPos;
     public override bool Condition()
     {
         isCondition = Owner.target == null ? false : true;
@@ -32,6 +33,7 @@ public class TrackingState : State
         {
             if ((Owner.AtkRange * Owner.AtkRange) >= (target.transform.position - transform.position).sqrMagnitude)
             {
+                targetPos = target.transform.position;
                 Owner.anim.Play("MonAttack");
                 StartCoroutine("AttackMotion");
             }
@@ -58,12 +60,12 @@ public class TrackingState : State
 
     IEnumerator AttackMotion()
     {
-        Vector2 targetPos = (Vector2)target.transform.position + new Vector2((dir * (Owner.AtkRange)), transform.position.y);
+        Vector2 targetPosition = targetPos + new Vector2((dir * (Owner.AtkRange)), transform.position.y);
         float t = 0;
         while (true)
         {
             t += Time.deltaTime;
-            transform.position = new Vector2(Vector2.Lerp(transform.position, targetPos, t).x, transform.position.y);
+            transform.position = new Vector2(Vector2.Lerp(transform.position, targetPosition, t).x, transform.position.y);
             if (t >= 1)
             {
                 Owner.anim.Play("MonTracking");

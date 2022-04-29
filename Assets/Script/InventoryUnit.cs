@@ -7,8 +7,14 @@ public class InventoryUnit : MonoBehaviour//대충 인벤토리 유닛?아이콘
 {
     public Button button;//UI의 버튼을 가져옴
     public Image icon;//UI로 쓸 아이콘 이미지를 가져옴 
+    public Sprite stdIcon;
 
     ItemData curItemData;//현재 아이템 정보를 담을 변수
+
+    private void Awake()
+    {
+        stdIcon = icon.sprite;
+    }
 
     public void AddItem(ItemData itemData)//아이템 추가 함수
     {
@@ -23,8 +29,8 @@ public class InventoryUnit : MonoBehaviour//대충 인벤토리 유닛?아이콘
     {
         curItemData = null;//모든값 널,false로 만들
 
-        icon.sprite = null;
-        icon.enabled = false;
+        icon.sprite = stdIcon;
+        //icon.enabled = false;
         button.interactable = false;
     }
 
@@ -32,5 +38,11 @@ public class InventoryUnit : MonoBehaviour//대충 인벤토리 유닛?아이콘
     {
         //TODO:아이템 사용하는 애니메이션 등 연결...
         curItemData.Use();//아이템 사용하기
+    }
+
+    public void BuyItem()
+    {
+        InventoryManager.instance.Add(curItemData, 1);
+        InventoryManager.instance.Remove(curItemData, 0);
     }
 }

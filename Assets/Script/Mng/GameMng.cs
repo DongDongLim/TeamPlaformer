@@ -33,16 +33,36 @@ public class GameMng : Singleton<GameMng>
         playerHp = MaxHp;
         pooling.OnRePooing += PooingObj;
         SceneMng.instance.SceneEnter += SummonMon;
+        SceneMng.instance.SceneEnter += SetPlayer;
         SceneMng.instance.SceneExit += DeleteMon;
 
         pooling.OnRePooing?.Invoke();
+    }
+
+    public void SetPlayer(string name)
+    {
+        player.SetActive(true);
+        switch (name)
+        {
+            case "Stage1":
+                player.transform.position = new Vector2(0, -3.4f);
+                break;
+            case "Stage2":
+                player.transform.position = new Vector2(-0.5f, -1.2f);
+                break;
+            case "Stage3":
+                player.transform.position = new Vector2(-12.3f, -3.4f);
+                break;
+            default:
+                player.SetActive(false);
+                break;
+        }
     }
 
     void SummonMon(string name)
     {
         if(name == "Stage2")
         {
-            player.SetActive(true);
             CreateObj();
             //for (int i = 0; i < 10; ++i)
             //{
@@ -74,7 +94,7 @@ public class GameMng : Singleton<GameMng>
 
     public void CreateObj()
     {
-        GameObject obj = pooling.Pop(transform.position);
+        GameObject obj = pooling.Pop(new Vector3(10,  -1.6f, 0));
         obj.SetActive(true);
         popList.Add(obj);
     }

@@ -13,20 +13,6 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            Debug.DrawRay(transform.position, Vector2.right * 10f, new Color(0, 1, 0));
-            RaycastHit2D ray = Physics2D.Raycast(transform.position, Vector2.right, 10f, LayerMask.GetMask("NPC"));
-            if (null != ray.collider)
-            {
-                IInteraction target = ray.collider.GetComponent<IInteraction>();
-                if (null != target)
-                {
-                    target.ReAction();
-                    return;
-                }
-            }
-        }
         if(Input.GetKeyDown(KeyCode.Z))
         {
             if (QuestMng.instance.curQuest.Count != 0)

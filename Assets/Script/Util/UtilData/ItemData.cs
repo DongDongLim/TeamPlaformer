@@ -10,9 +10,9 @@ public abstract class ItemData : Data//아이템데이터 클래스는 추상클
 
     public abstract void Use();//아이템사용함수(가상함수)
 
-    public void Remove()//아이템 삭제
+    public void Remove(int i)//아이템 삭제
     {
-        InventoryManager.instance.Remove(this);
+        InventoryManager.instance.Remove(this, i);
     }
 }
 

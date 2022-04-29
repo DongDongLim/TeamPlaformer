@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04b5c082b339fc34485c78ecde12915e, type: 3}
-  m_Name: SkillItemData
+  m_Script: {fileID: 11500000, guid: d62a4e7447350594d9198e8d0836e94a, type: 3}
+  m_Name: HealItem
   m_EditorClassIdentifier: 
-  name: Skill
-  icon: {fileID: 21300016, guid: ddf8838d0a06d8d4c9dec9e3bed69260, type: 3}
+  name: heal
+  icon: {fileID: 21300000, guid: ddf8838d0a06d8d4c9dec9e3bed69260, type: 3}
   CoolTime: 0.5
   prefab: {fileID: 0}
-  skillData: {fileID: 11400000, guid: 696493f66b4c3414eb073943d712f541, type: 2}
+  HealPoint: 1
