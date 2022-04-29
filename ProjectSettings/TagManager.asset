@@ -15,8 +15,8 @@ TagManager:
   - 
   - 
   - 
-  - Hazards
-  - Ground
+  - 
+  - 
   - Decoration
   - NPC
   - Monster
@@ -30,9 +30,9 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
+  - Hazards
+  - Ground
+  - BFA
   - 
   - 
   - 
