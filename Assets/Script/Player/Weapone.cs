@@ -8,16 +8,23 @@ public class Weapone : MonoBehaviour
     BoxCollider2D boxCollider;
     Animator anime;
 
-    public GameObject preFad;
+    public GameObject hitUI;
+    public GameObject potion;
+
 
     float attackDelay = 0;
     bool isAttacked;
     public float hitDistance = 3f;
 
+    bool skillCoolTime;
+    float skilltime;
+
     private void Start()
     {
         boxCollider = GetComponent<BoxCollider2D>();
         anime = GetComponent<Animator>();
+        skillCoolTime = false;
+        skilltime = 0;
     }
     private void FixedUpdate()
     {
@@ -28,7 +35,7 @@ public class Weapone : MonoBehaviour
             {
                 attackDelay = 0;
                 isAttacked = false;
-                anime.SetBool("IsAttacked", false);
+                
                 boxCollider.enabled = false;
             }
         }
@@ -36,6 +43,7 @@ public class Weapone : MonoBehaviour
     private void Update()
     {
         Attacked();
+        CoolTime();
 
     }
     private void Attacked()
@@ -44,7 +52,26 @@ public class Weapone : MonoBehaviour
         {
             isAttacked = true;
             boxCollider.enabled = true;
-            anime.SetBool("IsAttacked", true);
+            anime.SetTrigger("IsAttacked");
+        }
+        if (Input.GetButtonDown("Skill") && skillCoolTime == false)
+        {
+            anime.SetTrigger("IsAttacked");
+            skillCoolTime = true;
+            GameObject obj = Instantiate(potion, transform.position, Quaternion.identity);
+        }
+    }
+
+    private void CoolTime()
+    {
+        if (skillCoolTime)
+        {
+            skilltime += Time.deltaTime;
+            if (skilltime >= 0.5f)
+            {
+                skillCoolTime = false;
+                skilltime = 0;
+            }
         }
     }
 
@@ -53,7 +80,7 @@ public class Weapone : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Monster")/*몬스터*/)
         {
             Debug.Log("attcked!!!");
-            GameObject obj = Instantiate(preFad, transform.position, Quaternion.identity);
+            GameObject obj = Instantiate(hitUI, transform.position, Quaternion.identity);
 
             obj.GetComponent<ParticleSystem>().Play();
 

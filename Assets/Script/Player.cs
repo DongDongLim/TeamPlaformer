@@ -9,34 +9,40 @@ public class Player : MonoBehaviour , IDamaged
 
     bool noDamage;
     float damageDelay;
-    bool skillcall;
-    float skilltime;
-
-
+   
     SceneMng mng;
-    public GameObject preFab;
+    Rigidbody2D rigid;
 
     public Dictionary<string, int> PlayerData = new Dictionary<string, int>();
     
     public void Awake()
     {
+        rigid = GetComponent<Rigidbody2D>();
         PlayerData.Add("레벨", 2);
         damageDelay = 0;
         noDamage = false;
-        skillcall = false;
-        skilltime = 0;
+       
     }
 
     public void Damaged(SkillData data)
     {
+        rigid.AddForce(new Vector2(-100f, 100f), ForceMode2D.Impulse);
         noDamage = true;
-        if (!noDamage) { 
+       /* if (!noDamage && data.SkillType == curType.SkillType.NOMMAL) { 
+
             Hp -= data.atk;
         }
-        else
+        else if(!noDamage && data.atk == SkillData.SkillType.STUN)
         {
-            return;
+            rigid.constraints = RigidbodyConstraints2D.FreezePositionX;
+            rigid.constraints = RigidbodyConstraints2D.FreezePositionY;
         }
+        else if(!noDamage && SkillData.SkillType.INSTANTKILL)
+        {
+            Die();
+        }*/
+      
+
         if (Hp <= 0)
         {
             //Die();
@@ -71,7 +77,7 @@ public class Player : MonoBehaviour , IDamaged
                 }
             }
         }
-        if(Input.GetKeyDown(KeyCode.A))
+        /*if(Input.GetKeyDown(KeyCode.A))
         {
             if (QuestMng.instance.curQuest.Count != 0)
                 QuestMng.instance.curQuest[0].Progress();
@@ -79,13 +85,7 @@ public class Player : MonoBehaviour , IDamaged
         if (Input.GetKeyDown(KeyCode.X))
         {
             PlayerData["레벨"] = 10;
-        }
-        if (Input.GetButtonDown("Skill") && skillcall == false)
-        {
-            skillcall = true;
-            GameObject obj = Instantiate(preFab, transform.position, Quaternion.identity);
-        }
-        
+        }*/
     }
     private void Delay()
     {
@@ -96,16 +96,6 @@ public class Player : MonoBehaviour , IDamaged
             {
                 noDamage = false;
                 damageDelay = 0;
-            }
-        }
-
-        if (skillcall)
-        {
-            skilltime += Time.deltaTime;
-            if (skilltime >= 0.5f)
-            {
-                skillcall = false;
-                skilltime = 0;
             }
         }
     }
