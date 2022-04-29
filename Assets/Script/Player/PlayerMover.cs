@@ -88,6 +88,7 @@ public class PlayerMover : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump") && isGround == true)
         {
+            rigid.velocity = new Vector2(rigid.velocity.x, 0);
             rigid.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
 
             // anim.SetBool("IsJump", isJump);
